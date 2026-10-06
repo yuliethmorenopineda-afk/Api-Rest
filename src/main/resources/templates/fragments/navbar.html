@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar(active)" class="navbar navbar-expand-lg navbar-dark bg-pitch sticky-top">
+  <div class="container">
+    <a class="navbar-brand brand" th:href="@{/}"><span class="brand-ball" aria-hidden="true"></span>Mundial <span style="font-size: 0.85rem; opacity: 0.85;">· Julieth Moreno</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'home'} ? 'active'" th:href="@{/}">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'estadio'} ? 'active'" th:href="@{/estadios}">Estadios</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'asociacion'} ? 'active'" th:href="@{/asociaciones}">Asociaciones</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'entrenador'} ? 'active'" th:href="@{/entrenadores}">Entrenadores</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'club'} ? 'active'" th:href="@{/clubes}">Clubes</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'jugador'} ? 'active'" th:href="@{/jugadores}">Jugadores</a></li>
+        <li class="nav-item"><a class="nav-link" th:classappend="${active == 'competicion'} ? 'active'" th:href="@{/competiciones}">Competiciones</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

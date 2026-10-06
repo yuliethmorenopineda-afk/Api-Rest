@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Competiciones · Mundial</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body data-sec="competicion">
+<!-- Navbar compartido (fragments/navbar.html); el parámetro marca el enlace activo -->
+<div th:replace="~{fragments/navbar :: navbar('competicion')}"></div>
+
+<main class="container py-4 py-md-5">
+  <header class="sec-hero"><h1>Competiciones</h1></header>
+  <div class="row g-4">
+    <!-- Columna izquierda: formulario. Lo dibuja crud.js según la configuración de abajo -->
+    <section class="col-lg-4">
+      <div class="panel panel-form">
+        <h2 class="h5 mb-3">Registro</h2>
+        <p class="nota mb-3">Depende de los clubes: necesita al menos dos (muchos a muchos). Registra primero los clubes.</p>
+        <form id="crud-form" novalidate></form>
+      </div>
+    </section>
+    <!-- Columna derecha: tabla con los datos que devuelve la API -->
+    <section class="col-lg-8">
+      <div class="panel p-0 overflow-hidden">
+        <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center px-4 py-3 border-bottom">
+          <h2 class="h5 m-0">Lista <span class="badge text-bg-light ms-1" id="crud-count">0</span></h2>
+          <input type="search" id="buscar" class="form-control search-box" placeholder="Buscar" aria-label="Buscar">
+        </div>
+        <div class="table-responsive card-table" style="box-shadow:none;border-radius:0">
+          <table class="table align-middle mb-0">
+            <thead id="crud-thead"></thead>
+            <tbody id="crud-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toast" class="toast align-items-center text-bg-dark border-0" role="status" aria-live="polite">
+    <div class="d-flex">
+      <div class="toast-body" id="toast-msg"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/app.js}"></script>
+<script th:src="@{/js/crud.js}"></script>
+<!-- Configuración de ESTA sección: endpoint de la API, campos del formulario y columnas de la tabla -->
+<script>
+Crud({
+  endpoint: '/competiciones', vacio: 'Aún no hay competiciones registradas.',
+  campos: [
+    { name: 'nombre', label: 'Nombre' },
+    { name: 'anio', label: 'Año', type: 'number' },
+    { name: 'sede', label: 'Sede' },
+    { name: 'clubes', label: 'Clubes participantes', ref: '/clubes', refLabel: 'nombre', multiple: true, vacio: 'Primero registra clubes.' }
+  ],
+  columnas: [
+    { label: 'Nombre', render: c => c.nombre },
+    { label: 'Año', render: c => c.anio },
+    { label: 'Sede', render: c => c.sede },
+    { label: 'Clubes', render: c => (c.clubes || []).filter(Boolean).map(x => x.nombre) }
+  ]
+});
+</script>
+</body>
+</html>

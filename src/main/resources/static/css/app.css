@@ -1,0 +1,88 @@
+:root {
+  --night: #14103a;
+  --night-2: #241a63;
+  --violet: #5b2eff;
+  --coral: #ff4d6d;
+  --sun: #ffc52e;
+  --aqua: #14d6c4;
+  --lime: #8be04e;
+  --orange: #ff8a2b;
+  --ink: #17132f;
+  --paper: #f3f1ff;
+  --accent: var(--sun);
+  --on-accent: var(--ink);
+  --bs-body-font-family: 'Figtree', system-ui, sans-serif;
+  --bs-body-color: var(--ink);
+  --bs-body-bg: var(--paper);
+}
+
+/* Cada sección tiene su propio color */
+[data-sec="estadio"]     { --accent: var(--aqua);   --on-accent: var(--ink); }
+[data-sec="asociacion"]  { --accent: var(--sun);    --on-accent: var(--ink); }
+[data-sec="entrenador"]  { --accent: var(--coral);  --on-accent: #fff; }
+[data-sec="club"]        { --accent: var(--violet); --on-accent: #fff; }
+[data-sec="jugador"]     { --accent: var(--lime);   --on-accent: var(--ink); }
+[data-sec="competicion"] { --accent: var(--orange); --on-accent: var(--ink); }
+
+h1, h2, h3, .display-5, .display-6, .brand { font-family: 'Bricolage Grotesque', 'Figtree', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+
+/* Navbar */
+.bg-pitch { background: var(--night); }
+.brand { display: inline-flex; align-items: center; gap: .6rem; font-size: 1.4rem; }
+.brand-ball { width: 1.15rem; height: 1.15rem; border-radius: 50%;
+  background: conic-gradient(var(--sun) 0 25%, var(--coral) 0 50%, var(--aqua) 0 75%, var(--violet) 0); }
+.navbar .nav-link { color: rgba(255,255,255,.72); border-bottom: 3px solid transparent; font-weight: 500; }
+.navbar .nav-link:hover, .navbar .nav-link:focus-visible { color: #fff; }
+.navbar .nav-link.active { color: #fff; border-bottom-color: var(--accent); }
+
+/* Cabecera de sección */
+.sec-hero { position: relative; overflow: hidden; background: var(--accent); color: var(--on-accent);
+  border-radius: 1.25rem; padding: 2rem 2rem 2.2rem; margin-bottom: 1.75rem; }
+.sec-hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); margin: 0; line-height: 1; }
+.sec-hero::after { content: ''; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 50%;
+  border: 28px solid rgba(255,255,255,.28); }
+.sec-hero::before { content: ''; position: absolute; right: 90px; bottom: -40px; width: 110px; height: 110px; border-radius: 50%;
+  background: rgba(0,0,0,.12); }
+
+/* Paneles y tablas */
+.panel { background: #fff; border-radius: 1.1rem; padding: 1.5rem; box-shadow: 0 14px 34px -22px rgba(36,26,99,.5); }
+.panel-form { border-top: 6px solid var(--accent); }
+.nota { background: color-mix(in srgb, var(--accent) 16%, white); border-radius: .6rem; padding: .7rem .9rem; font-size: .9rem; }
+.card-table { background: #fff; }
+.table > :not(caption) > * > * { padding: .85rem 1.25rem; }
+.table thead th { font-weight: 600; background: color-mix(in srgb, var(--accent) 18%, white); border-bottom: 0; }
+.table tbody tr:hover { background: color-mix(in srgb, var(--accent) 7%, white); }
+.search-box { max-width: 260px; border-radius: 2rem; }
+.chip { display: inline-block; background: color-mix(in srgb, var(--accent) 22%, white); border-radius: 2rem; padding: .1rem .65rem; font-size: .8rem; margin: 0 .2rem .2rem 0; font-weight: 500; }
+.empty { text-align: center; color: #6b6890; padding: 2rem 1rem !important; }
+
+/* Formularios y botones */
+.form-label { font-weight: 600; }
+.form-control, .form-select { border-radius: .7rem; padding: .65rem .85rem; border: 2px solid #e1ddf7; }
+.form-control:focus, .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--accent) 30%, transparent); }
+.btn-pitch { background: var(--accent); color: var(--on-accent); border: 0; border-radius: .7rem; font-weight: 700; padding: .6rem 1.4rem; }
+.btn-pitch:hover, .btn-pitch:focus-visible { background: var(--accent); color: var(--on-accent); filter: brightness(.92); }
+.btn-outline-secondary, .btn-outline-danger { border-radius: .6rem; }
+
+/* Inicio */
+.home-hero { position: relative; overflow: hidden; border-radius: 1.5rem; color: #fff; padding: clamp(2rem, 6vw, 4.5rem);
+  background:
+    radial-gradient(circle at 88% 18%, var(--coral) 0 70px, transparent 71px),
+    radial-gradient(circle at 78% 78%, var(--sun) 0 110px, transparent 111px),
+    radial-gradient(circle at 96% 62%, var(--aqua) 0 48px, transparent 49px),
+    linear-gradient(135deg, var(--night) 40%, var(--night-2)); }
+.home-hero h1 { font-size: clamp(3rem, 10vw, 6.5rem); line-height: .95; margin: 0 0 1rem; }
+.home-hero p { max-width: 30rem; font-size: 1.15rem; color: rgba(255,255,255,.82); margin: 0; }
+
+.tier { margin-top: 2.5rem; }
+.tier-title { display: flex; align-items: center; gap: .7rem; font-weight: 600; margin-bottom: 1rem; }
+.tier-num { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--night); color: #fff; font-weight: 800; font-family: 'Bricolage Grotesque', sans-serif; }
+.sec-card { position: relative; overflow: hidden; display: block; height: 100%; border-radius: 1.25rem; padding: 1.4rem 1.4rem 1.6rem;
+  background: var(--accent); color: var(--on-accent); text-decoration: none; transition: transform .18s; }
+.sec-card::after { content: ''; position: absolute; right: -34px; bottom: -34px; width: 120px; height: 120px; border-radius: 50%; border: 18px solid rgba(255,255,255,.3); }
+.sec-card:hover, .sec-card:focus-visible { transform: translateY(-4px) rotate(-.6deg); color: var(--on-accent); }
+.sec-card .count { font-family: 'Bricolage Grotesque', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1; }
+.sec-card h2 { font-size: 1.35rem; margin: .5rem 0 .2rem; }
+.sec-card small { opacity: .85; font-size: .9rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
